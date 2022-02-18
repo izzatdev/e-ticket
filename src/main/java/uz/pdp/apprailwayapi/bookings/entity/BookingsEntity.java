@@ -4,12 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.catalina.User;
+import org.springframework.scheduling.annotation.Scheduled;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
+import uz.pdp.apprailwayapi.schedule.entity.ScheduleEntity;
+import uz.pdp.apprailwayapi.stations.entity.StationsEntity;
 import uz.pdp.apprailwayapi.statuses.entity.StatusesEntity;
+import uz.pdp.apprailwayapi.tickets.entity.TicketsEntity;
 import uz.pdp.apprailwayapi.user.entity.UserEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,17 +41,22 @@ public class BookingsEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity user;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
-    private Long schedule_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
+    private ScheduleEntity schedule;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "f_station_id", referencedColumnName = "id")
-    private Long f_station_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "f_station_id", referencedColumnName = "id")
+    private StationsEntity fromStation;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "to_station_id", referencedColumnName = "id")
-    private Long to_station_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "to_station_id", referencedColumnName = "id")
+    private StationsEntity toStation;
+
+    @OneToMany(mappedBy = "bookings",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<TicketsEntity> tickets ;
 
     @Column(name = "start_time", nullable = false)
     private Date startTime;

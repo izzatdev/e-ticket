@@ -3,12 +3,15 @@ package uz.pdp.apprailwayapi.user.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uz.pdp.apprailwayapi.bookings.entity.BookingsEntity;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
 import uz.pdp.apprailwayapi.user.enums.Doc_type;
 import uz.pdp.apprailwayapi.user.enums.Role;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -59,4 +62,9 @@ public class UserEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
+
+    @OneToMany(mappedBy = "users",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<BookingsEntity> bookings ;
 }

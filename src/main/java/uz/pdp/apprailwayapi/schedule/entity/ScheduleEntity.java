@@ -3,10 +3,16 @@ package uz.pdp.apprailwayapi.schedule.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uz.pdp.apprailwayapi.bookings.entity.BookingsEntity;
+import uz.pdp.apprailwayapi.seats.entity.SeatsEntity;
 import uz.pdp.apprailwayapi.stations.entity.StationsEntity;
+import uz.pdp.apprailwayapi.trains.entity.TrainsEntity;
+import uz.pdp.apprailwayapi.travelLine.entity.TravelLineEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,9 +39,17 @@ public class ScheduleEntity {
     @JoinColumn(name = "to_station_id", referencedColumnName = "id")
     private StationsEntity toStation;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "train_id", referencedColumnName = "id")
-    private Long train;
+    @OneToMany(mappedBy = "schedule",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<TravelLineEntity> travelLines ;
 
+    @OneToMany(mappedBy = "schedule",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<BookingsEntity> bookings ;
+
+    @ManyToMany(mappedBy = "schedules")
+    private Set<TrainsEntity> trains = new HashSet<>();
 
 }

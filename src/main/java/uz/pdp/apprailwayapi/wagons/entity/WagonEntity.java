@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
+import uz.pdp.apprailwayapi.prices.entity.PricesEntity;
 import uz.pdp.apprailwayapi.seats.entity.SeatsEntity;
 import uz.pdp.apprailwayapi.trains.entity.TrainsEntity;
 
@@ -41,8 +42,8 @@ public class WagonEntity {
             orphanRemoval = true)
     private Set<SeatsEntity> seats ;
 
-    //    @OneToOne(mappedBy = "wagons",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private PricesEntity price ;
+    @OneToOne(mappedBy = "wagons",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private PricesEntity price ;
 }
