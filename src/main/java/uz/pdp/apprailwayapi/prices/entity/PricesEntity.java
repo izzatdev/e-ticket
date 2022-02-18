@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uz.pdp.apprailwayapi.stations.entity.StationsEntity;
+import uz.pdp.apprailwayapi.wagons.entity.WagonEntity;
 
 import javax.persistence.*;
 
@@ -32,9 +33,9 @@ public class PricesEntity {
     @JoinColumn(name = "to_station_id", referencedColumnName = "id")
     private StationsEntity toStation;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "wagon_id", referencedColumnName = "id")
-    private Long wagon;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wagon_id", referencedColumnName = "id")
+    private WagonEntity wagon;
 
 
 

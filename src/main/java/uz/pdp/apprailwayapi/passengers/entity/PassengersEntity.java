@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
+import uz.pdp.apprailwayapi.tickets.entity.TicketsEntity;
 import uz.pdp.apprailwayapi.user.enums.Doc_type;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,4 +48,9 @@ public class PassengersEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
+
+    @OneToMany(mappedBy = "passengers",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<TicketsEntity> tickets ;
 }

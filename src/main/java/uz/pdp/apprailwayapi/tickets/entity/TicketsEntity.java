@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uz.pdp.apprailwayapi.bookings.entity.BookingsEntity;
 import uz.pdp.apprailwayapi.passengers.entity.PassengersEntity;
+import uz.pdp.apprailwayapi.seats.entity.SeatsEntity;
+import uz.pdp.apprailwayapi.stations.entity.StationsEntity;
 import uz.pdp.apprailwayapi.statuses.entity.StatusesEntity;
 
 import javax.persistence.*;
@@ -33,9 +35,9 @@ public class TicketsEntity {
     private PassengersEntity passenger;
 
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "seat_id", referencedColumnName = "id")
-    private Long seat;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "seat_id", referencedColumnName = "id")
+    private SeatsEntity seat;
 
 
 

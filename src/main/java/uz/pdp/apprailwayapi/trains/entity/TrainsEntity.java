@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uz.pdp.apprailwayapi.district.entity.DistrictEntity;
+import uz.pdp.apprailwayapi.schedule.entity.ScheduleEntity;
 import uz.pdp.apprailwayapi.wagons.entity.WagonEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -38,7 +40,11 @@ public class TrainsEntity {
     private Set<WagonEntity> wagons ;
 
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id", referencedColumnName = "train_id")
-//    private ScheduleEntity schedules;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "Train_Schedule",
+            joinColumns = { @JoinColumn(name = "train_id") },
+            inverseJoinColumns = { @JoinColumn(name = "schedule_id") }
+    )
+    Set<ScheduleEntity> schedules = new HashSet<>();
 }
