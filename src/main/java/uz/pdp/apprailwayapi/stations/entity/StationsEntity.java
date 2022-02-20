@@ -33,22 +33,22 @@ public class StationsEntity {
     @Column(nullable = false)
     private String district;
 
-    @OneToMany(mappedBy = "stations",//It is a link between booking_from_station and station_id
+    @OneToMany(mappedBy = "toStation",//It is a link between booking_from_station and station_id
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<BookingsEntity> bookings ;
 
-    @OneToMany(mappedBy = "stations",//It is a link between prices_from_station and station_id
+    @OneToMany(mappedBy = "fromStation",//It is a link between prices_from_station and station_id
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<PricesEntity> prices ;
 
-    @OneToMany(mappedBy = "stations",//It is a link between schedule_from_station and station_id
+    @OneToMany(mappedBy = "fromStation",//It is a link between schedule_from_station and station_id
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<ScheduleEntity> schedules ;
 
-    @OneToMany(mappedBy = "stations",//It is a link between travel_station and station_id
+    @OneToMany(mappedBy = "station",//It is a link between travel_station and station_id
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<TravelLineEntity> travelLines ;
@@ -57,19 +57,19 @@ public class StationsEntity {
     //from_station_id -> id
     //to_station_id -> id
 
-//    @OneToMany(mappedBy = "stations",//It is a link between schedule_to_station and station_id
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private List<ScheduleEntity> schedules ;
+    @OneToMany(mappedBy = "toStation",//It is a link between schedule_to_station and station_id
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<ScheduleEntity> scheduleEntities ;
 
-//    @OneToMany(mappedBy = "stations",//It is a link between prices_to_station and station_id
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private List<PricesEntity> prices ;
+    @OneToMany(mappedBy = "toStation",//It is a link between prices_to_station and station_id
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<PricesEntity> pricesEntities ;
 
 
-//    @OneToMany(mappedBy = "stations",  //It is a link between booking_to_station and station_id
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private List<BookingsEntity> bookings ;
+    @OneToMany(mappedBy = "fromStation",  //It is a link between booking_to_station and station_id
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<BookingsEntity> bookingsEntities ;
 }

@@ -32,9 +32,4 @@ public class TravelLineEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "schedule_id", referencedColumnName = "id")
     private ScheduleEntity schedule;
-
-
-
-
-
 }

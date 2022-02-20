@@ -3,9 +3,6 @@ package uz.pdp.apprailwayapi.bookings.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
-import org.springframework.scheduling.annotation.Scheduled;
-import uz.pdp.apprailwayapi.country.entity.CountryEntity;
 import uz.pdp.apprailwayapi.schedule.entity.ScheduleEntity;
 import uz.pdp.apprailwayapi.stations.entity.StationsEntity;
 import uz.pdp.apprailwayapi.statuses.entity.StatusesEntity;
@@ -53,22 +50,11 @@ public class BookingsEntity {
     @JoinColumn(name = "to_station_id", referencedColumnName = "id")
     private StationsEntity toStation;
 
-    @OneToMany(mappedBy = "bookings",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<TicketsEntity> tickets ;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,mappedBy = "")
+    private List<TicketsEntity> tickets;
 
     @Column(name = "start_time", nullable = false)
     private Date startTime;
-
-
-
-
-
-
-
-
-
 
 
 }

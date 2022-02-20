@@ -38,9 +38,4 @@ public class TicketsEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seat_id", referencedColumnName = "id")
     private SeatsEntity seat;
-
-
-
-
-
 }

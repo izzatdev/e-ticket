@@ -23,12 +23,12 @@ public class StatusesEntity {
     // status name unique bolishi keremi yoqmi?
     @Column(nullable = false)
     private String name;
-    @OneToMany(mappedBy = "statuses",
+    @OneToMany(mappedBy = "status",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<BookingsEntity> bookings ;
 
-    @OneToMany(mappedBy = "statuses",
+    @OneToMany(mappedBy = "status",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<TicketsEntity> tickets ;

@@ -31,7 +31,7 @@ public class SeatsEntity {
     @JoinColumn(name = "wagon_id", referencedColumnName = "id")
     private WagonEntity wagons;
 
-    @OneToMany(mappedBy = "seats",
+    @OneToMany(mappedBy = "seat",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<TicketsEntity> tickets ;

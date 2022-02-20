@@ -36,7 +36,4 @@ public class PricesEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wagon_id", referencedColumnName = "id")
     private WagonEntity wagon;
-
-
-
 }

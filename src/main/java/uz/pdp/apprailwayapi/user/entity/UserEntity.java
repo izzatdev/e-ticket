@@ -11,7 +11,6 @@ import uz.pdp.apprailwayapi.user.enums.Role;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -47,9 +46,6 @@ public class UserEntity {
     @Column(name = "document_series_number", nullable = false, unique = true)
     private String documentNumber;
 
-//    @ManyToOne
-//    private Country countries;
-
     @Column(name = "doc_given_district_name")
     private String districtName;
 
@@ -63,8 +59,6 @@ public class UserEntity {
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 
-    @OneToMany(mappedBy = "users",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<BookingsEntity> bookings ;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookingsEntity> bookings;
 }

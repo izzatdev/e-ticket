@@ -42,7 +42,7 @@ public class WagonEntity {
             orphanRemoval = true)
     private Set<SeatsEntity> seats ;
 
-    @OneToOne(mappedBy = "wagons",
+    @OneToOne(mappedBy = "wagon",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private PricesEntity price ;

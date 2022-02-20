@@ -49,7 +49,7 @@ public class PassengersEntity {
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 
-    @OneToMany(mappedBy = "passengers",
+    @OneToMany(mappedBy = "passenger",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<TicketsEntity> tickets ;

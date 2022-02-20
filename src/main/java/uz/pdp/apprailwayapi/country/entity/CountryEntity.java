@@ -38,6 +38,4 @@ public class CountryEntity {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<PassengersEntity> passengers;
-
 }
-
