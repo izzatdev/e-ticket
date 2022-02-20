@@ -1,5 +1,6 @@
 package uz.pdp.apprailwayapi.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,10 +56,12 @@ public class UserEntity {
     @Column(nullable = false)
     private Date birthDate;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "users",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookingsEntity> bookings;
 }

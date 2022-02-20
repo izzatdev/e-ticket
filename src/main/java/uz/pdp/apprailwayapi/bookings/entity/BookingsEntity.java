@@ -35,7 +35,6 @@ public class BookingsEntity {
     private double singlePrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity users;
 
     @ManyToOne(fetch = FetchType.LAZY)
