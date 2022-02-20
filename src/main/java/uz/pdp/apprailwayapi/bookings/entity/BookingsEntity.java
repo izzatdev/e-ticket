@@ -36,7 +36,7 @@ public class BookingsEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity user;
+    private UserEntity users;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "schedule_id", referencedColumnName = "id")
@@ -50,7 +50,7 @@ public class BookingsEntity {
     @JoinColumn(name = "to_station_id", referencedColumnName = "id")
     private StationsEntity toStation;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,mappedBy = "")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,mappedBy = "bookings")
     private List<TicketsEntity> tickets;
 
     @Column(name = "start_time", nullable = false)

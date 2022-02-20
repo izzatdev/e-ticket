@@ -59,6 +59,6 @@ public class UserEntity {
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookingsEntity> bookings;
 }
