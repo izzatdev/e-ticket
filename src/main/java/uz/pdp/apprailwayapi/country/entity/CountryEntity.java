@@ -1,5 +1,6 @@
 package uz.pdp.apprailwayapi.country.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public class CountryEntity {
             orphanRemoval = true)
     private Set<DistrictEntity> districts ;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "country",
             cascade = CascadeType.ALL,
             orphanRemoval = true)

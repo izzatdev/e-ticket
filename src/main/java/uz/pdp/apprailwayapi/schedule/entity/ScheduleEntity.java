@@ -19,7 +19,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "schedule")
-public class ScheduleEntity {
+public class ScheduleEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class ScheduleEntity {
 
     private double travelTime;
 
-    private Date toTime;
+    private Date arrivalTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "from_station_id", referencedColumnName = "id")
@@ -39,9 +39,7 @@ public class ScheduleEntity {
     @JoinColumn(name = "to_station_id", referencedColumnName = "id")
     private StationsEntity toStation;
 
-    @OneToMany(mappedBy = "schedule",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "schedule")
     private Set<TravelLineEntity> travelLines ;
 
     @OneToMany(mappedBy = "schedule",
@@ -49,7 +47,6 @@ public class ScheduleEntity {
             orphanRemoval = true)
     private Set<BookingsEntity> bookings ;
 
-    @ManyToMany(mappedBy = "schedules")
+    @ManyToMany()
     private Set<TrainsEntity> trains = new HashSet<>();
-
 }

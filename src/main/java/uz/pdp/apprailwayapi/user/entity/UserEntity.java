@@ -56,12 +56,12 @@ public class UserEntity {
     @Column(nullable = false)
     private Date birthDate;
 
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "users",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookingsEntity> bookings;
 }

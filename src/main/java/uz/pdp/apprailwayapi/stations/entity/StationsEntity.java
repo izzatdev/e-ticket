@@ -48,12 +48,11 @@ public class StationsEntity {
             orphanRemoval = true)
     private List<ScheduleEntity> schedules ;
 
-    @OneToMany(mappedBy = "station",//It is a link between travel_station and station_id
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "station",
+            cascade = CascadeType.ALL)
     private List<TravelLineEntity> travelLines ;
 
-    //Can we create OneToMany connection two times with 2 tables
+    //Can we create OneToMstatusesany connection two times with 2 tables
     //from_station_id -> id
     //to_station_id -> id
 

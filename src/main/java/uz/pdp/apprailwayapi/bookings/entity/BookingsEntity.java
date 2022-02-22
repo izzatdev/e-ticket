@@ -1,5 +1,6 @@
 package uz.pdp.apprailwayapi.bookings.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class BookingsEntity {
     @Column(nullable = false)
     private double singlePrice;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity users;
 

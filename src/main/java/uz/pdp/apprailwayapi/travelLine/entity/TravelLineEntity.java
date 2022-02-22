@@ -12,7 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "travel_line")
 public class TravelLineEntity {
 
     @Id
