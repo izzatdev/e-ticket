@@ -10,6 +10,7 @@ import uz.pdp.apprailwayapi.travelLine.entity.TravelLineEntity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -48,24 +49,23 @@ public class StationsEntity {
             orphanRemoval = true)
     private List<ScheduleEntity> schedules ;
 
-    @OneToMany(mappedBy = "station",
-            cascade = CascadeType.ALL)
-    private List<TravelLineEntity> travelLines ;
-
-    //Can we create OneToMstatusesany connection two times with 2 tables
-    //from_station_id -> id
-    //to_station_id -> id
-
     @OneToMany(mappedBy = "toStation",//It is a link between schedule_to_station and station_id
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<ScheduleEntity> scheduleEntities ;
+//
+
+    @OneToMany(mappedBy = "station")
+    private Set<TravelLineEntity> travelLineEntity ;
+
+    //Can we create OneTo statuses any connection two times with 2 tables
+    //from_station_id -> id
+    //to_station_id -> id
 
     @OneToMany(mappedBy = "toStation",//It is a link between prices_to_station and station_id
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<PricesEntity> pricesEntities ;
-
 
     @OneToMany(mappedBy = "fromStation",  //It is a link between booking_to_station and station_id
             cascade = CascadeType.ALL,

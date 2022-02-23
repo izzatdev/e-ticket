@@ -1,6 +1,5 @@
 package uz.pdp.apprailwayapi.user.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,13 +34,13 @@ public class UserEntity {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(name = "patronymic", nullable = false)
+    @Column(name = "patronymic")
     private String fatherName;
 
-    @Column(nullable = false)
+
     private Role role;
 
-    @Column(nullable = false)
+
     private Doc_type documentType;
 
     @Column(name = "document_series_number", nullable = false, unique = true)
@@ -56,12 +55,14 @@ public class UserEntity {
     @Column(nullable = false)
     private Date birthDate;
 
+    private boolean isEnabled;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 
 
-    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookingsEntity> bookings;
 }

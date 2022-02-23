@@ -42,7 +42,6 @@ public class TrainsEntity {
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "Train_Schedule",
             joinColumns = { @JoinColumn(name = "train_id") },
             inverseJoinColumns = { @JoinColumn(name = "schedule_id") }
     )

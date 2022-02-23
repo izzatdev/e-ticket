@@ -40,13 +40,15 @@ public class ScheduleEntity{
     private StationsEntity toStation;
 
     @OneToMany(mappedBy = "schedule")
-    private Set<TravelLineEntity> travelLines ;
+
+
+    private Set<TravelLineEntity> travelLineEntity ;
 
     @OneToMany(mappedBy = "schedule",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private Set<BookingsEntity> bookings ;
 
-    @ManyToMany()
+    @ManyToMany(mappedBy = "schedules")
     private Set<TrainsEntity> trains = new HashSet<>();
 }

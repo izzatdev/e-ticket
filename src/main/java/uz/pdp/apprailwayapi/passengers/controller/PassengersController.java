@@ -21,6 +21,5 @@ public class PassengersController {
     public ResponseEntity<?> getAllPassengers() {
         List<PassengersEntity> allPassengers = passengersService.getAllPassengers();
         return ResponseEntity.ok(allPassengers);
-
     }
 }
