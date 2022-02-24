@@ -35,7 +35,7 @@ public class CountryEntity {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<UserEntity> users ;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "country",
             cascade = CascadeType.ALL,
             orphanRemoval = true)

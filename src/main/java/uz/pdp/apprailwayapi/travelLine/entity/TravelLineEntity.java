@@ -7,7 +7,6 @@ import uz.pdp.apprailwayapi.schedule.entity.ScheduleEntity;
 import uz.pdp.apprailwayapi.stations.entity.StationsEntity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +16,7 @@ import java.util.Set;
 public class TravelLineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(nullable = false,name = "station_order")
     private int order;
