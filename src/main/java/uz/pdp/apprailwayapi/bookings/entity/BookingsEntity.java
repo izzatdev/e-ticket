@@ -11,7 +11,7 @@ import uz.pdp.apprailwayapi.tickets.entity.TicketsEntity;
 import uz.pdp.apprailwayapi.user.entity.UserEntity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -55,7 +55,9 @@ public class BookingsEntity {
     private List<TicketsEntity> tickets;
 
     @Column(name = "start_time", nullable = false)
-    private Date startTime;
+    private LocalDateTime startTime;
 
+    @Column(name = "end_time", nullable = false)
+    private LocalDateTime endTime;
 
 }
