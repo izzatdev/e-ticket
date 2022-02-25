@@ -10,6 +10,7 @@ import uz.pdp.apprailwayapi.trains.entity.TrainsEntity;
 import uz.pdp.apprailwayapi.travelLine.entity.TravelLineEntity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,11 +26,11 @@ public class ScheduleEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date fromTime;
+    private LocalDateTime fromTime;
 
     private double travelTime;
 
-    private Date arrivalTime;
+    private LocalDateTime arrivalTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "from_station_id", referencedColumnName = "id")

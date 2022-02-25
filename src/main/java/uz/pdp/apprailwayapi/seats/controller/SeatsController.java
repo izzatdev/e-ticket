@@ -17,7 +17,7 @@ public class SeatsController {
     private final SeatsService seatsService;
 
     @GetMapping
-    public ResponseEntity<?> getAllPrices() {
+    public ResponseEntity<?> getAllSeats() {
         List<SeatsEntity> allSeats = seatsService.getAllSeats();
         return ResponseEntity.ok(allSeats);
 
