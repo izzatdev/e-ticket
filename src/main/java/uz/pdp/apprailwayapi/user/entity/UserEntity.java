@@ -37,10 +37,10 @@ public class UserEntity {
     @Column(name = "patronymic")
     private String fatherName;
 
-
+    @Enumerated(EnumType.STRING)
     private Role role;
 
-
+    @Enumerated(EnumType.STRING)
     private Doc_type documentType;
 
     @Column(name = "document_series_number", nullable = false, unique = true)
