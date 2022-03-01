@@ -6,10 +6,11 @@ import lombok.NoArgsConstructor;
 import uz.pdp.apprailwayapi.bookings.entity.BookingsEntity;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
 import uz.pdp.apprailwayapi.district.entity.DistrictEntity;
-import uz.pdp.apprailwayapi.user.enums.Doc_type;
+import uz.pdp.apprailwayapi.user.enums.DocType;
 import uz.pdp.apprailwayapi.user.enums.Role;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class UserEntity {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column(nullable = false, unique = true)
     private String phoneNumber;
@@ -42,13 +46,13 @@ public class UserEntity {
     private Role role;
 
     @Enumerated(EnumType.STRING)
-    private Doc_type documentType;
+    private DocType documentType;
 
     @Column(name = "document_series_number", nullable = false, unique = true)
     private String documentNumber;
 
-    @Column(name = "doc_given_district_name")
-    private String districtName;
+//    @Column(name = "doc_given_district_name")
+//    private String districtName;
 
     @Column(nullable = false)
     private boolean gender;
@@ -59,7 +63,7 @@ public class UserEntity {
     private boolean isActive;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 

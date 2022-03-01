@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
 import uz.pdp.apprailwayapi.tickets.entity.TicketsEntity;
-import uz.pdp.apprailwayapi.user.enums.Doc_type;
+import uz.pdp.apprailwayapi.passengers.enums.DocumentType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -31,7 +31,7 @@ public class PassengersEntity {
     private String fatherName;
 
     @Column(nullable = false)
-    private Doc_type documentType;
+    private DocumentType documentType;
 
     @Column(name = "document_series_number", nullable = false, unique = true)
     private String documentNumber;

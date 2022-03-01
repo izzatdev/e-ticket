@@ -1,6 +1,6 @@
 package uz.pdp.apprailwayapi.passengers.enums;
 
-public enum Doc_type {
+public enum DocumentType {
     UZB_PASSPORT,
     FOREIGN_PASSPORT,
     FOREIGN_PASSPORT_UZ,

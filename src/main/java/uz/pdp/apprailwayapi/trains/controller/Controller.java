@@ -16,11 +16,11 @@ public class Controller {
     @Autowired
     private TrainService trainService;
 
-    @PostMapping("add")
-    public ResponseEntity<?> addTrain(@RequestBody TrainCreatedto trainCreatedto) {
-        ApiResponse apiResponse = trainService.add(trainCreatedto);
-        return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse.getMessage());
-    }
+//    @PostMapping("add")
+//    public ResponseEntity<?> addTrain(@RequestBody TrainCreatedto trainCreatedto) {
+//        ApiResponse apiResponse = trainService.add(trainCreatedto);
+//        return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse.getMessage());
+//    }
 //
 //    @PutMapping("edit")
 //    public ResponseEntity<?> editTrain(@RequestParam Long id, @RequestBody TrainCreatedto trainCreatedto) {

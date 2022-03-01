@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class AppRailwayApiApplication {
-    @Bean
-    ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
+//    @Bean
+//    ModelMapper modelMapper() {
+//        return new ModelMapper();
+//    }
     public static void main(String[] args) {
         SpringApplication.run(AppRailwayApiApplication.class, args);
     }

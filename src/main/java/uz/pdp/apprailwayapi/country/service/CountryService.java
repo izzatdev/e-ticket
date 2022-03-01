@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uz.pdp.apprailwayapi.bookings.entity.BookingsEntity;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
 import uz.pdp.apprailwayapi.country.repository.CountryRepository;
+import uz.pdp.model.response.ApiResponse;
 
 import java.util.List;
 
@@ -13,8 +14,8 @@ import java.util.List;
 public class CountryService {
     private final CountryRepository countryRepository;
 
-    public List<CountryEntity> getAllCountries() {
-        return countryRepository.findAll();
+    public ApiResponse getAllCountries() {
+        return new ApiResponse(1,"success",countryRepository.findAll());
     }
 }
 

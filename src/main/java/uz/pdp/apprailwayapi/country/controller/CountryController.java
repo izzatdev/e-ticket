@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uz.pdp.apprailwayapi.bookings.entity.BookingsEntity;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
 import uz.pdp.apprailwayapi.country.service.CountryService;
+import uz.pdp.model.response.ApiResponse;
 
 import java.util.List;
 
@@ -17,10 +18,10 @@ import java.util.List;
 public class CountryController {
     private final CountryService countryService;
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<?> getAllCountries() {
-        List<CountryEntity> allCountries = countryService.getAllCountries();
-        return ResponseEntity.ok(allCountries);
+        ApiResponse apiResponse = countryService.getAllCountries();
+        return ResponseEntity.ok(apiResponse.getData());
 
     }
 }

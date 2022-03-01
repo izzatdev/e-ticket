@@ -7,7 +7,7 @@ import uz.pdp.apprailwayapi.base.service.BaseService;
 import uz.pdp.apprailwayapi.trains.entity.TrainsEntity;
 import uz.pdp.apprailwayapi.trains.repository.TrainRepository;
 import uz.pdp.apprailwayapi.wagons.entity.WagonEntity;
-import uz.pdp.model.ApiResponse;
+import uz.pdp.model.response.ApiResponse;
 import uz.pdp.model.train.TrainCreatedto;
 import uz.pdp.model.wagon.WagonCreateDTO;
 
@@ -27,10 +27,10 @@ public class TrainService implements BaseService<TrainCreatedto, TrainsEntity> {
     public ApiResponse add(TrainCreatedto trainReceiveDTO) {
         TrainsEntity train = modelMapper.map(trainReceiveDTO, TrainsEntity.class);
         if (trainRepository.existsByName(train.getName())) {
-            return new ApiResponse("This train already exists", false);
+            return new ApiResponse(0, "This train already exists");
         }
         trainRepository.save(train);
-        return new ApiResponse("Train was saved", true);
+        return new ApiResponse(1, "success");
     }
 
     @Override
@@ -46,12 +46,12 @@ public class TrainService implements BaseService<TrainCreatedto, TrainsEntity> {
 
     @Override
     public ApiResponse delete(TrainCreatedto trainReceiveDTO) {
-//        if (trainRepository.existsByName(trainReceiveDTO.getName())) {
-//            TrainsEntity map = modelMapper.map(trainReceiveDTO, TrainsEntity.class);
-//            trainRepository.delete(map);
-//            return new ApiResponse("Train was deleted", true);
-//        }
-        return new ApiResponse("Train not found", false);
+        if (trainRepository.existsByName(trainReceiveDTO.getName())) {
+            TrainsEntity map = modelMapper.map(trainReceiveDTO, TrainsEntity.class);
+            trainRepository.delete(map);
+            return new ApiResponse(1, "Train was deleted");
+        }
+        return new ApiResponse(0, "Train not found");
     }
 
     @Override
@@ -62,8 +62,8 @@ public class TrainService implements BaseService<TrainCreatedto, TrainsEntity> {
             Set<WagonEntity> wagonEntities = trainReceiveDTO.getWagons().stream().map(wagonCreateDTO->modelMapper.map(wagonCreateDTO, WagonEntity.class)).collect(Collectors.toSet());
             train.setWagons(wagonEntities);
             trainRepository.save(train);
-            return new ApiResponse("Train updated", true);
+            return new ApiResponse(1, "Train updated");
         }
-        return new ApiResponse("Train not found", false);
+        return new ApiResponse(0, "Train not found");
     }
 }

@@ -2,24 +2,48 @@ package uz.pdp.apprailwayapi.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import uz.pdp.apprailwayapi.user.entity.UserEntity;
+import org.springframework.web.bind.annotation.*;
 import uz.pdp.apprailwayapi.user.service.UserService;
+import uz.pdp.model.response.ApiResponse;
+import uz.pdp.model.user.UserLoginDTO;
+import uz.pdp.model.user.UserReceiveDTO;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
 @RequiredArgsConstructor
+@RequestMapping("api/user")
 public class UserController {
+
     private final UserService userService;
 
-    @GetMapping
-    public ResponseEntity<?> getAllUsers() {
-        List<UserEntity> allUsers = userService.getAllUsers();
-        return ResponseEntity.ok(allUsers);
-
+    @PostMapping("/add")
+    public ResponseEntity<?> addUsers(
+            @Valid @RequestBody UserReceiveDTO userReceiveDTO
+    ) {
+        return ResponseEntity.ok(userService.addUser(userReceiveDTO));
     }
+
+    @GetMapping("/list")
+    public ResponseEntity<?> getUser() {
+        ApiResponse apiResponse = userService.getUserList();
+        return ResponseEntity.ok(apiResponse.getData());
+    }
+
+    @GetMapping("/{phone}")
+    public ResponseEntity<?> checkUserByPhoneNumber(
+            @PathVariable("phone") String phoneNumber
+    ){
+        return ResponseEntity.ok(userService.checkUserPhoneNumber(phoneNumber));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(
+            @RequestBody UserLoginDTO userReceiveDTO
+    ){
+        return ResponseEntity.ok(userService.login(userReceiveDTO));
+    }
+
+
 }

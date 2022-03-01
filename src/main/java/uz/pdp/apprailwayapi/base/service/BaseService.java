@@ -1,6 +1,7 @@
 package uz.pdp.apprailwayapi.base.service;
 
-import uz.pdp.model.ApiResponse;
+
+import uz.pdp.model.response.ApiResponse;
 
 import java.util.List;
 
