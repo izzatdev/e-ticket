@@ -46,11 +46,11 @@ public class TrainService implements BaseService<TrainCreatedto, TrainsEntity> {
 
     @Override
     public ApiResponse delete(TrainCreatedto trainReceiveDTO) {
-        if (trainRepository.existsByName(trainReceiveDTO.getName())) {
-            TrainsEntity map = modelMapper.map(trainReceiveDTO, TrainsEntity.class);
-            trainRepository.delete(map);
-            return new ApiResponse("Train was deleted", true);
-        }
+//        if (trainRepository.existsByName(trainReceiveDTO.getName())) {
+//            TrainsEntity map = modelMapper.map(trainReceiveDTO, TrainsEntity.class);
+//            trainRepository.delete(map);
+//            return new ApiResponse("Train was deleted", true);
+//        }
         return new ApiResponse("Train not found", false);
     }
 

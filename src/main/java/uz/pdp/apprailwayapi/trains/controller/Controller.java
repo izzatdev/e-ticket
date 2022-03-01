@@ -21,22 +21,22 @@ public class Controller {
         ApiResponse apiResponse = trainService.add(trainCreatedto);
         return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse.getMessage());
     }
-
-    @PutMapping("edit")
-    public ResponseEntity<?> editTrain(@RequestParam Long id, @RequestBody TrainCreatedto trainCreatedto) {
-        ApiResponse apiResponse = trainService.edit(id, trainCreatedto);
-        return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse.getMessage());
-    }
-
-    @GetMapping()
-    public ResponseEntity<?> getAllTrains() {
-        List<TrainsEntity> trainsEntities = trainService.get();
-        return ResponseEntity.ok(trainsEntities);
-    }
-
-    @GetMapping()
-    public ResponseEntity<?> getById() {
-        List<TrainsEntity> trainsEntities = trainService.get();
-        return ResponseEntity.ok(trainsEntities);
-    }
+//
+//    @PutMapping("edit")
+//    public ResponseEntity<?> editTrain(@RequestParam Long id, @RequestBody TrainCreatedto trainCreatedto) {
+//        ApiResponse apiResponse = trainService.edit(id, trainCreatedto);
+//        return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse.getMessage());
+//    }
+//
+//    @GetMapping()
+//    public ResponseEntity<?> getAllTrains() {
+//        List<TrainsEntity> trainsEntities = trainService.get();
+//        return ResponseEntity.ok(trainsEntities);
+//    }
+//
+//    @GetMapping()
+//    public ResponseEntity<?> getById() {
+//        List<TrainsEntity> trainsEntities = trainService.get();
+//        return ResponseEntity.ok(trainsEntities);
+//    }
 }
