@@ -24,6 +24,7 @@ public class TrainsEntity {
     private String name;
 
    // @Column(nullable = false)
+
     private int count_wagon;
 
   //  @Column(nullable = false)
