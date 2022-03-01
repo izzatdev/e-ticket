@@ -16,8 +16,10 @@ import uz.pdp.apprailwayapi.wagons.repository.WagonRepository;
 import uz.pdp.model.country.CountryCreateDto;
 import uz.pdp.model.response.ApiResponse;
 import uz.pdp.model.train.TrainCreatedto;
+import uz.pdp.model.train.TrainResponseDto;
 import uz.pdp.model.wagon.WagonCreateDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -67,7 +69,21 @@ public class TrainService extends ResponseUtils {
 
 
     public ApiResponse getAllTrains() {
-        return new ApiResponse(1,"success",trainRepository.findAll());
+        List<TrainsEntity> trainsEntities = trainRepository.findAll();
+        List<TrainResponseDto> trainResponseDtos = new ArrayList<>();
+
+        for (int i = 0; i < trainsEntities.size(); i++) {
+            TrainResponseDto trains = new TrainResponseDto();
+            trains.setId(trainsEntities.get(i).getId());
+            trains.setCount_wagon(trainsEntities.get(i).getCount_wagon());
+            trains.setName(trainsEntities.get(i).getName());
+            trains.setTotal_seats(trainsEntities.get(i).getFree_seats());
+            trains.setSpeed(trainsEntities.get(i).getSpeed());
+            trains.setWagons(null);
+            trains.setSchedules(null);
+            trainResponseDtos.add(trains);
+        }
+        return new ApiResponse(1,"success",trainResponseDtos);
     }
 
 

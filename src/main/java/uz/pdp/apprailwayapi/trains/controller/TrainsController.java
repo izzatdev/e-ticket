@@ -29,7 +29,7 @@ public class TrainsController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<?> getAllTrains() {
+    public ResponseEntity<?> getAllTrains(){
         ApiResponse apiResponse = trainService.getAllTrains();
         return ResponseEntity.ok(apiResponse.getData());
 
