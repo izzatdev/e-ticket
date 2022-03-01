@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uz.pdp.apprailwayapi.bookings.entity.BookingsEntity;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
-import uz.pdp.apprailwayapi.user.enums.Doc_type;
+import uz.pdp.apprailwayapi.district.entity.DistrictEntity;
+import uz.pdp.apprailwayapi.user.enums.DocType;
 import uz.pdp.apprailwayapi.user.enums.Role;
 
 import javax.persistence.*;
@@ -64,6 +65,10 @@ public class UserEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "district_id", referencedColumnName = "id")
+    private DistrictEntity district;
 
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
