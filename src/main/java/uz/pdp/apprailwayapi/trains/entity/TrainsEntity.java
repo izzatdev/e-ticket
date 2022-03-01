@@ -40,6 +40,7 @@ public class TrainsEntity {
     private Set<WagonEntity> wagons ;
 
 
+
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             joinColumns = { @JoinColumn(name = "train_id") },
