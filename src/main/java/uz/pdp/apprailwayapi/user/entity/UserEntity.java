@@ -1,5 +1,7 @@
 package uz.pdp.apprailwayapi.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,13 +31,13 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = true, unique = true)
     private String phoneNumber;
 
-    @Column(nullable = false)
+//    @Column(nullable = true)
     private String firstName;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String lastName;
 
     @Column(name = "patronymic")
@@ -47,7 +49,7 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private DocType documentType;
 
-    @Column(name = "document_series_number", nullable = false, unique = true)
+    @Column(name = "document_series_number", nullable = true, unique = true)
     private String documentNumber;
 
 //    @Column(name = "doc_given_district_name")
@@ -56,15 +58,18 @@ public class UserEntity {
     @Column(nullable = false)
     private boolean gender;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date birthDate;
 
     private boolean isActive;
 
-
+    @JsonIgnore
+    @JsonProperty("country_id")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
+    @JsonIgnore
+    @JsonProperty("district_id")
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "district_id", referencedColumnName = "id")

@@ -20,7 +20,7 @@ public class DistrictEntity {
     @Column(nullable = false,unique = true)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 

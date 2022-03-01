@@ -30,10 +30,10 @@ public class WagonEntity {
     @Column(nullable = false)
     private int total_seats;
 
-    @Column(nullable = false)
-    private int free_seats;
+//    @Column(nullable = false)
+//    private int free_seats;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "train_id", referencedColumnName = "id")
     private TrainsEntity trains;
 

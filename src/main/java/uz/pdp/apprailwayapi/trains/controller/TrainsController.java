@@ -1,21 +1,39 @@
 package uz.pdp.apprailwayapi.trains.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.pdp.apprailwayapi.trains.entity.TrainsEntity;
 import uz.pdp.apprailwayapi.trains.service.TrainService;
-import uz.pdp.model.ApiResponse;
+
+import uz.pdp.model.country.CountryCreateDto;
+import uz.pdp.model.response.ApiResponse;
 import uz.pdp.model.train.TrainCreatedto;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/train")
-public class Controller {
-    @Autowired
-    private TrainService trainService;
+@RequiredArgsConstructor
+public class TrainsController {
+    private final TrainService trainService;
 
+    @PostMapping("/add")
+    public ResponseEntity<?> addTrain(
+            @Valid @RequestBody TrainCreatedto trainCreatedto
+    ) {
+        return ResponseEntity.ok(trainService.addTrain(trainCreatedto));
+    }
+
+
+    @GetMapping("/list")
+    public ResponseEntity<?> getAllTrains() {
+        ApiResponse apiResponse = trainService.getAllTrains();
+        return ResponseEntity.ok(apiResponse.getData());
+
+    }
 //    @PostMapping("add")
 //    public ResponseEntity<?> addTrain(@RequestBody TrainCreatedto trainCreatedto) {
 //        ApiResponse apiResponse = trainService.add(trainCreatedto);

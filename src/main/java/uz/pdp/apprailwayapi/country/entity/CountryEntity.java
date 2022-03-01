@@ -24,17 +24,17 @@ public class CountryEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "country",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private Set<DistrictEntity> districts ;
+    private Set<DistrictEntity> districts;
 
     @JsonIgnore
     @OneToMany(mappedBy = "country",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<UserEntity> users ;
+    private List<UserEntity> users;
     @JsonIgnore
     @OneToMany(mappedBy = "country",
             cascade = CascadeType.ALL,

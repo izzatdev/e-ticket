@@ -3,12 +3,10 @@ package uz.pdp.apprailwayapi.trains.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uz.pdp.apprailwayapi.district.entity.DistrictEntity;
 import uz.pdp.apprailwayapi.schedule.entity.ScheduleEntity;
 import uz.pdp.apprailwayapi.wagons.entity.WagonEntity;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,10 +23,10 @@ public class TrainsEntity {
     @Column(nullable = false,unique = true)
     private String name;
 
-    @Column(nullable = false)
+   // @Column(nullable = false)
     private int count_wagon;
 
-    @Column(nullable = false)
+  //  @Column(nullable = false)
     private int free_seats;
 
     @Column(nullable = false)
@@ -36,6 +34,7 @@ public class TrainsEntity {
 
     @OneToMany(mappedBy = "trains",
             cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
             orphanRemoval = true)
     private Set<WagonEntity> wagons ;
 
