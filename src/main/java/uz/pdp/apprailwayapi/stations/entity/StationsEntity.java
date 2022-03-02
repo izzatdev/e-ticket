@@ -1,5 +1,8 @@
 package uz.pdp.apprailwayapi.stations.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +12,9 @@ import uz.pdp.apprailwayapi.schedule.entity.ScheduleEntity;
 import uz.pdp.apprailwayapi.travelLine.entity.TravelLineEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -17,6 +22,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "stations")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class StationsEntity {
 
     @Id

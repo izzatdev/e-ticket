@@ -60,4 +60,6 @@ public class BookingsEntity {
     @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
 
+
+
 }
