@@ -18,6 +18,7 @@ import uz.pdp.model.response.ApiResponse;
 import uz.pdp.model.train.TrainCreatedto;
 import uz.pdp.model.train.TrainResponseDto;
 import uz.pdp.model.wagon.WagonCreateDTO;
+import uz.pdp.model.wagon.WagonResponseDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,18 +49,20 @@ public class TrainService extends ResponseUtils {
     ){
         checkTrain(trainCreatedto.getName());
 
-//        List<WagonCreateDTO> wagonCreateDTO= trainCreatedto.getWagons();
-//
-//        for (int i=0; i<wagonCreateDTO.size()-2;i++) {
-//
-//            WagonEntity wagonEntity = modelMapper.map(wagonCreateDTO.get(i),WagonEntity.class);
-//            wagonRepository.save(wagonEntity);
-//        }
 
         TrainsEntity trainsEntity = modelMapper.map(trainCreatedto, TrainsEntity.class);
-        trainRepository.save(trainsEntity);
+        TrainsEntity save = trainRepository.save(trainsEntity);
+
+        List<WagonCreateDTO> wagonCreateDTO= trainCreatedto.getWagons();
+
+        for (int i=0; i<wagonCreateDTO.size();i++) {
+            WagonEntity wagonEntity = modelMapper.map(wagonCreateDTO.get(i),WagonEntity.class);
+            wagonEntity.setTrains(save);
+            wagonRepository.save(wagonEntity);
+        }
         return SUCCESS;
     }
+
     private void checkTrain(String trainName){
         Optional<TrainsEntity> optionalTrainsEntity = trainRepository.findByName(trainName);
 
@@ -84,6 +87,28 @@ public class TrainService extends ResponseUtils {
             trainResponseDtos.add(trains);
         }
         return new ApiResponse(1,"success",trainResponseDtos);
+    }
+
+    public ApiResponse getTrainById(Long trainId){
+        Optional<TrainsEntity> train = trainRepository.findById(trainId);
+        TrainResponseDto trainResponseDto = new TrainResponseDto();
+        if (train.isPresent()) {
+            trainResponseDto.setId(train.get().getId());
+            trainResponseDto.setName(train.get().getName());
+            trainResponseDto.setSpeed(train.get().getSpeed());
+            trainResponseDto.setCount_wagon(train.get().getCount_wagon());
+            trainResponseDto.setTotal_seats(train.get().getFree_seats());
+
+            List<WagonResponseDto> wagons = (List<WagonResponseDto>) (List<?>) train.get().getWagons();
+
+            trainResponseDto.setWagons(wagons);
+            trainResponseDto.setSchedules(null);
+            return new ApiResponse(1,"success",trainResponseDto);
+        }
+        else
+            return new ApiResponse(0,"train not Found");
+
+
     }
 
 

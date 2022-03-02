@@ -1,18 +1,19 @@
 package uz.pdp.apprailwayapi.trains.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import uz.pdp.apprailwayapi.schedule.entity.ScheduleEntity;
 import uz.pdp.apprailwayapi.wagons.entity.WagonEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "trains")
 public class TrainsEntity {
@@ -32,12 +33,12 @@ public class TrainsEntity {
 
     @Column(nullable = false)
     private double speed;
-
+@JsonIgnore
     @OneToMany(mappedBy = "trains",
-            cascade = CascadeType.ALL,
+//            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             orphanRemoval = true)
-    private Set<WagonEntity> wagons ;
+    private List<WagonEntity> wagons ;
 
 
 

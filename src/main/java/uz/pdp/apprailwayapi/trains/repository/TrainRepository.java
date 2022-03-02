@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface TrainRepository extends JpaRepository<TrainsEntity, Long> {
     Optional<TrainsEntity> findByName(String Name);
+    Optional<TrainsEntity> findById(Long id);
 
 }

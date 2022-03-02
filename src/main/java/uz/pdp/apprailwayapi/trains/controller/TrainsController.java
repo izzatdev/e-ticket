@@ -34,6 +34,15 @@ public class TrainsController {
         return ResponseEntity.ok(apiResponse.getData());
 
     }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getTrainById(
+            @PathVariable Long id
+    ){
+        ApiResponse apiResponse = trainService.getTrainById(id);
+        return ResponseEntity.ok(apiResponse.getData());
+
+    }
 //    @PostMapping("add")
 //    public ResponseEntity<?> addTrain(@RequestBody TrainCreatedto trainCreatedto) {
 //        ApiResponse apiResponse = trainService.add(trainCreatedto);

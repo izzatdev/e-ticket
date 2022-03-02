@@ -1,8 +1,7 @@
 package uz.pdp.apprailwayapi.wagons.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import uz.pdp.apprailwayapi.country.entity.CountryEntity;
 import uz.pdp.apprailwayapi.prices.entity.PricesEntity;
 import uz.pdp.apprailwayapi.seats.entity.SeatsEntity;
@@ -13,7 +12,8 @@ import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "wagons")
 public class WagonEntity {
@@ -33,6 +33,8 @@ public class WagonEntity {
 //    @Column(nullable = false)
 //    private int free_seats;
 
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "train_id", referencedColumnName = "id")
     private TrainsEntity trains;
