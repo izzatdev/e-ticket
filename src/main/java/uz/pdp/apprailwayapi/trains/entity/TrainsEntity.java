@@ -24,6 +24,7 @@ public class TrainsEntity {
     @Column(nullable = false,unique = true)
     private String name;
 
+    private boolean isActive=true;
    // @Column(nullable = false)
 
     private int count_wagon;

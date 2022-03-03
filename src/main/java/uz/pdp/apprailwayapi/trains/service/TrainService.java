@@ -108,7 +108,27 @@ public class TrainService extends ResponseUtils {
         else
             return new ApiResponse(0,"train not Found");
 
+    }
+    public ApiResponse updateTrain(TrainCreatedto trainUpdate, long id){
+        Optional<TrainsEntity> train = trainRepository.findById(id);
+        if(train.isPresent()) {
+            TrainsEntity trainEntity = train.get();
+            modelMapper.map(trainUpdate, trainEntity);
+            trainEntity.setId(id);
 
+            return new ApiResponse(1, "updated");
+        }
+        else return new ApiResponse(0,"train not Found");
+    }
+
+    public ApiResponse removeTrain(long id){
+        Optional<TrainsEntity> train = trainRepository.findById(id);
+        if(train.isPresent()) {
+            TrainsEntity trainEntity = train.get();
+        trainEntity.setActive(false);
+        return new ApiResponse(1, "removed");
+        }
+        else return new ApiResponse(0,"train not Found");
     }
 
 
