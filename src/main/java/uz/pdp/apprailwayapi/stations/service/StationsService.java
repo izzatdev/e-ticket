@@ -31,20 +31,25 @@ public class StationsService extends ResponseUtils {
 
         List<StationsEntity> all = stationsRepository.findAll();
         all.forEach(stationsEntity ->{
-            modelMapper.map(stationsEntity, stationsEntity);
+            stationReceiveDTOS.add(modelMapper.map(stationsEntity, StationReceiveDTO.class));
+
         });
-        return new ApiResponse(1,"success",stationsRepository.findAll());
+        return new ApiResponse(1,"success", stationReceiveDTOS);
     }
 
-    // GET ONE STATION
+    // GET ONE STATION BY NAME
     public ApiResponse getStationByName( String name ){
 
         Optional<StationsEntity> optionalStationsEntity = stationsRepository.findByName(name);
         StationReceiveDTO dto = modelMapper.map(optionalStationsEntity.get(), StationReceiveDTO.class);
-//        dto.setName(null);
-//        dto.set
         return new ApiResponse(1,"success",dto);
+    }
 
+    // GET ONE STATION BY ID
+    public ApiResponse getStationById( Long id ){
+        Optional<StationsEntity> optionalStationsEntity = stationsRepository.findById(id);
+        StationReceiveDTO dto = modelMapper.map(optionalStationsEntity.get(), StationReceiveDTO.class);
+        return new ApiResponse(1,"success",dto);
     }
 
     // ADD STATION
@@ -55,16 +60,42 @@ public class StationsService extends ResponseUtils {
 
         stationsRepository.save(stationsEntity);
         return SUCCESS;
-
     }
 
+    // EDIT STATION
+    public ApiResponse editStation(Long id, StationReceiveDTO stationReceiveDTO ){
+        Optional<StationsEntity> optionalStationsEntity = stationsRepository.findById(id);
+
+        if(optionalStationsEntity.isPresent()){
+            StationsEntity stationsEntity = optionalStationsEntity.get();
+            stationsEntity.setName(stationReceiveDTO.getName());
+            stationsEntity.setDistrict(stationReceiveDTO.getDistrict());
+            stationsEntity.setRegion(stationReceiveDTO.getRegion());
+            stationsRepository.save(stationsEntity);
+
+            return new ApiResponse(1, " station edited");
+        }
+
+        return new ApiResponse(1, stationReceiveDTO.getName() + " station not found");
+        //        StationsEntity stationsEntity = stationsRepository.findById(id)
+    }
+
+    // DELETE STATION
+    public ApiResponse deleteStation(Long id){
+        stationsRepository.deleteById(id);
+        return new ApiResponse(1, "station with " + id + " is deleted");
+    }
+
+    // CHECK STATION BY NAME
     private void checkStationByName(String name){
         Optional<StationsEntity> optionalStationsEntity
                 = stationsRepository.findByName(name);
 
         if (optionalStationsEntity.isPresent())
-            throw new UserCustomException(name + " user is exist");
+            throw new UserCustomException(name + " station is exist");
     }
+
+
 
 
 
